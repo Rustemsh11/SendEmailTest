@@ -1,4 +1,6 @@
-﻿namespace SendEmailTest.Models
+﻿using Microsoft.AspNetCore.Http;
+
+namespace SendEmailTest.Models
 {
     public class EmailData
     {
@@ -7,5 +9,6 @@
         public string Recipient { get; set; }
         public string Text { get; set; }
         public string CompanyName { get; set; }
+        public string Attachment { get; set; }
     }
 }

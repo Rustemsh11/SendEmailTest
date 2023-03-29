@@ -2,6 +2,7 @@
 using MimeKit;
 using SendEmailTest.Models;
 
+
 namespace SendEmailTest
 {
     public class Email
@@ -22,13 +23,19 @@ namespace SendEmailTest
                 message.From.Add(new MailboxAddress(emailData.CompanyName, emailData.Sender));
                 message.To.Add(new MailboxAddress("", emailData.Recipient));
                 message.Subject = EmailData.Title;
-                message.Body = new BodyBuilder() { HtmlBody = $"<div>{emailData.Text}</div>" }.ToMessageBody();
-
+                var bodyBuilder = new BodyBuilder() { HtmlBody = $"<div>{emailData.Text}</div>" };
+                if (emailData.Attachment != null && emailData.Attachment.Any())
+                {
+                    
+                        bodyBuilder.Attachments.Add(emailData.Attachment);
+                    
+                }
+                message.Body = bodyBuilder.ToMessageBody();
                 using (SmtpClient client = new SmtpClient())
                 {
-                
-                    client.Connect("smtp.gmail.com", 465, true);
-                    client.Authenticate(_configuration.GetValue<string>("Email"), _configuration.GetValue<string>("Password"));
+                    
+                    client.Connect("smtp.yandex.ru", 465, true);
+                    client.Authenticate("rustemsh11@yandex.ru", "vaayzmsgogztikng");
                     client.Send(message);
                     client.Disconnect(true);
                     _logger.LogInformation("Success");

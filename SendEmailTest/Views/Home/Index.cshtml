@@ -4,6 +4,10 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <a asp-action="Send" asp-controller="Home">Send Email</a>
+    <form asp-action="Send" asp-controller="Home" enctype="multipart/form-data" method="post">
+    
+        <input type="file" class="form-control text-center" name="postedFiles" multiple />
+        <input type="submit" class="btn btn-outline-primary border border-1 border-primary" value="Сохранить" />
+    </form>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

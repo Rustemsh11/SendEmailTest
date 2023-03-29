@@ -20,14 +20,16 @@ namespace SendEmailTest.Controllers
             
             return View();
         }
+        [HttpPost]
         public IActionResult Send()
         {
             EmailData emailData = new EmailData()
             {
-                Sender = "mr.shaykheraziev@mail.ru",
+                Sender = "rustemsh11@yandex.ru",
                 Recipient = "Gafurovaguzel2001@mail.ru",
-                Text = "text",
-                CompanyName = "myemail"
+                Text = "I love you so",
+                CompanyName = "rustemsh11@yandex.ru",
+                Attachment = @"C:\Users\агроном\Desktop\test.docx"
             };
             
             _email.CreateEmail(emailData);
